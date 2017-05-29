@@ -96,7 +96,7 @@ Get the AUTH URL to authenticate.
 
 =head3 Authenticate
 
-After authorization, Instagram will redirected the user to the URL in
+After authorization, Instagram will redirect the user to the URL in
 C<redirect_uri> with a code as an URL query parameter. This code is needed
 to obtain an acess token.
 
@@ -105,7 +105,7 @@ to obtain an acess token.
 
 =head3 Request
 
-With the access token its possible to do Instagram API requests using the
+With the access token it's possible to do Instagram API requests using the
 authenticated user credentials.
 
 	$instagram->access_token( $access_token );
@@ -135,7 +135,7 @@ C<scope> is the scope of access. See L<http://instagram.com/developer/authentica
 C<response_type> and C<granty_type> do no vary. See L<http://instagram.com/developer/authentication/>.
 
 By default, L<API::Instagram> caches created objects to avoid duplications. You can disable
-this feature setting a true value to C<no_chace> parameter.
+this feature setting a true value to C<no_cache> parameter.
 
 =method instance
 
@@ -166,7 +166,7 @@ sub instance { $instance //= shift->new(@_) }
 Returns an Instagram authorization URL.
 
 =cut
-sub get_auth_url { 
+sub get_auth_url {
 	my $self = shift;
 
 	carp "User already authorized with code: " . $self->code if $self->code;
@@ -393,7 +393,7 @@ sub _request {
 
 	# Verifies meta node
 	my $meta = $res->{meta};
-	
+
 	# Sometimes there is no {meta} data in response JSON, so we'll check 
 	if (ref $meta eq 'HASH' && $meta->{code} ne '200') {
 		carp "$meta->{error_type}: $meta->{error_message}";
